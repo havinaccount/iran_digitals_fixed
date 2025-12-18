@@ -25,5 +25,5 @@ The interface and messages are in **Persian (Farsi)**.
 ## ▶️ How to Run
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/phone-book-cli.git
-   cd phone-book-cli
+   git clone https://github.comhavinaccount/iran_digitals_fixed.git
+   cd iran_digitals_fixed
