@@ -6,6 +6,9 @@ phone_book: dict[str, list[str]] = {
 }
 
 def terminal_cleanup():
+    """
+    The function `terminal_cleanup` clears the terminal screen based on the operating system.
+    """
     os.system("clear" if os.name == "posix" else 'cls')
 
 # App's main menu
