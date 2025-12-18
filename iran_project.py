@@ -34,7 +34,7 @@ while True:
     # Check if user is exiting
         case "6":
             terminal_cleanup()
-            print("خداحافظ")
+            print("خداحافظ\n")
             break
 
     # Make a add contact feature
