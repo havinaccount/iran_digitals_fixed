@@ -1,4 +1,5 @@
 import os
+from typing import Literal
 
 # Making a dictionary with a fixed number for saving info
 phone_book: dict[str, list[str]] = {
@@ -29,33 +30,21 @@ while True:
 
     # Get input from user
     user_choice: str = input(menu_text)
-    match user_choice:
 
+    match user_choice:
     # Check if user is exiting
         case "6":
-            terminal_cleanup()
-            print("خداحافظ\n")
-            break
+            terminal_cleanup(); print("خداحافظ\n"); break
 
     # Make a add contact feature
         case "1":
             name: str = input("اسم مخاطب رو وارد کن: ")
-            if name in phone_book:
-                result_message: str = "مخاطبی با این نام از قبل وجود داره"
-            else:
-                number: str = input("شماره تلفن رو وارد کن: ")
-                phone_book[name] = [number]
-                result_message: str = "مخاطب با موفقیت اضافه شد"
+            result_message: str = "مخاطبی با این نام از قبل وجود داره" if name in phone_book else (phone_book.setdefault(name, [input("شماره تلفن رو وارد کن: ")]) or "مخاطب با موفقیت اضافه شد" )) # pyright: ignore
 
     # Make a adding other numbers to contacts feature
         case "2":
             name: str = input("اسم مخاطب رو وارد کن: ")
-            if name not in phone_book:
-                result_message: str = "مخاطبی با این نام پیدا نشد"
-            else:
-                number: str = input("شماره جدید رو وارد کن: ")
-                phone_book[name].append(number)
-                result_message: str = "شماره جدید اضافه شد"
+            result_message: str = "مخاطبی با این نام پیدا نشد" if name not in phone_book else (phone_book[name].append(input("شماره جدید رو وارد کن: ") or "شماره جدید اضافه شد") # pyright: ignore
 
     # Search the contact using it's name
         case "3":
@@ -65,11 +54,7 @@ while True:
     # Add a user deleting feature
         case "4":
             name: str = input("اسم مخاطب رو وارد کن: ")
-            if name not in phone_book:
-                result_message: str = "مخاطبی با این نام پیدا نشد"
-            else:
-                del phone_book[name]
-                result_message: str = "مخاطب حذف شد"
+            result_message: str = "مخاطبی با این نام پیدا نشد" if name not in phone_book else (phone_book.pop(name) or "مخاطب حذف شد") # pyright: ignore
 
     # Show how many contacts are registered
         case "5":
@@ -83,7 +68,4 @@ while True:
     result_message += "\n - آیا می‌خوای ادامه بدی؟ (بله/خیر): "
 
     cont: str = input(result_message)
-    if cont == ["خیر", "", "N", "n"]:
-        terminal_cleanup()
-        print("خداحافظ\n")
-        break
+    if cont == ["خیر", "", "N", "n"]: terminal_cleanup(); print("خداحافظ\n"); break
