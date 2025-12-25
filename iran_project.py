@@ -30,7 +30,7 @@ while True:
     # Get input from user
     user_choice: str = input(menu_text)
     match user_choice:
-        
+
     # Check if user is exiting
         case "6":
             terminal_cleanup()
@@ -60,23 +60,20 @@ while True:
     # Search the contact using it's name
         case "3":
             name: str = input("اسم مخاطب رو وارد کن: ")
-            if name in phone_book:
-                result_message: str = str(phone_book[name])
-            else:
-                result_message: str = "مخاطبی با این نام پیدا نشد"
+            result_message: str = str(phone_book[name]) if name in phone_book else "مخاطبی با این نام پیدا نشد"
 
     # Add a user deleting feature
         case "4":
             name: str = input("اسم مخاطب رو وارد کن: ")
-            if name in phone_book:
+            if name not in phone_book:
+                result_message: str = "مخاطبی با این نام پیدا نشد"
+            else:
                 del phone_book[name]
                 result_message: str = "مخاطب حذف شد"
-            else:
-                result_message: str = "مخاطبی با این نام پیدا نشد"
 
     # Show how many contacts are registered
         case "5":
-            result_message: str = "تعداد مخاطب‌ها: " + str(len(phone_book))
+            result_message: str = f"تعداد مخاطب‌ها: {len(phone_book)}"
 
     # Manage a unknown choice
         case _:
@@ -86,7 +83,7 @@ while True:
     result_message += "\n - آیا می‌خوای ادامه بدی؟ (بله/خیر): "
 
     cont: str = input(result_message)
-    if cont == ["خیر", ""] or cont.upper() == "N":
+    if cont == ["خیر", "", "N", "n"]:
         terminal_cleanup()
         print("خداحافظ\n")
         break
