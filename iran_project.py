@@ -1,5 +1,4 @@
 import os
-from typing import Literal
 
 # Making a dictionary with a fixed number for saving info
 phone_book: dict[str, list[str]] = {
